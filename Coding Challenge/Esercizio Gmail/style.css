@@ -1,0 +1,84 @@
+body {
+    background-image: url(https://ssl.gstatic.com/ui/v1/icons/mail/themes/desk/bg2_1920x1200.jpg);
+}
+
+.container{
+    width: 1000px;
+    margin: auto;
+}
+
+.logo{
+    width: 100px;
+}
+
+.logotext{
+    font-size: 40px;
+    color: white;
+}
+
+.unread-message{
+    color: white;
+    display: block;
+    margin-top: 5px;
+    font-size: large;
+}
+
+#unread-count{
+    color: red;
+    background-color: orange;
+    border-radius: 50%;
+}
+
+.row{
+    border: 1px solid black;
+    height: 25px;
+}
+
+.read{
+    background-color: white;
+}
+
+.unread{
+    background-color: lightgrey;
+}
+
+.row-left{
+    display: inline-block;
+    width: 30%;
+}
+
+.row-right{
+    display: inline-block;
+    width: 68%;
+    color: rgb(104, 99, 99);
+}
+
+.checkbox{
+    display: inline-block;
+}
+
+.star{
+    display: inline-block;
+    color: black;
+}
+
+.subject{
+    display: inline-block;
+}
+
+.body{
+    display: inline-block;
+}
+
+footer{
+    text-align: center;
+}
+
+#text-footer{
+    font-size: xx-large;
+    color: white;
+}
+
+#powered{
+    font-size: small;
+}

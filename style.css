@@ -1,0 +1,320 @@
+body{
+    background-image: url(immagini/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+}
+
+.background-container{
+    border: 0px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 2% 18.5%;
+}
+
+.sections-container{
+    padding: 7.5% 7.5% 2.5%;
+    vertical-align: middle;
+}
+
+.header{
+    vertical-align: middle;
+}
+
+.header-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+
+.header-text{
+    color:rgb(0, 221, 0);
+    text-align: center;
+    font-size: 32.5px;
+    margin: auto;
+}
+
+.action-panel{
+    margin: 3px 0px 3px;
+    height: 45px;
+    background-color: rgb(0, 221, 0);
+}
+
+.button-bar{
+    padding: 12px 355px 12px;
+}
+
+.actionbutton{
+    display: inline-block;
+}
+
+.monopattini{
+    margin: auto;
+    padding: 30px 0px 30px 0px;
+}
+
+.monopattino-infobox{
+    padding-bottom: 25px;
+}
+
+.monopattino-title{
+    padding-bottom: 5px;
+}
+
+#stato-carica-gino22{
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgb(255, 185, 55);
+    display: block;
+    width: 350px;
+    height: 30px;
+}
+
+#stato-carica-mike24{
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgb(0, 221, 0);
+    display: block;
+    width: 600px;
+    height: 30px;
+}
+
+#stato-carica-fede154{
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgb(255, 71, 71);
+    display: block;
+    width: 150px;
+    height: 30px;
+}
+
+.checkbox-monopattini{
+    display: inline-block;
+}
+
+.name-monopattini{
+    color: white;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.text-monopattini{
+    color: white;
+    font-size: 19px;
+    display: block;
+    padding-bottom: 3px;
+}
+
+
+/*Troubleshooting:
+
+#1 - immagine di sfondo troppo grande:
+
+ho prima provato a risolvere dando al background un valore che rispecchiasse le dimensioni
+classiche di uno schermo, ossia 1920x1080px, questa soluzione funzionava nel far sì
+che l'immagine di sfondo coprisse tutto lo schermo senza che essa stessa dettasse le
+dimensioni della finestra del browser.
+questa soluzione, tuttavia, non era ideale perché dato che l'immagine di sfondo fornita
+aveva un aspect ratio di 3:2 mentre uno schermo standard ne ha uno tipicamente di 16:9
+questo significava che una parte dell'immagine sarebbe stata tagliata (una linea a destra
+dato che il punto di ancoraggio delle immagini di sfondo immagino sia in alto a sinistra).
+mi sono così ricordato di aver analizzato in classe il value "contain" e "cover" della
+proprietà "background-size".
+contain non funziona in questo caso perché, come viene detto qui https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Resizing_background_images,
+questo value detta che indipendentemente dalla grandezza del contenitore l'immagine
+deve essere scalata in maniera tale che ogni lato sia più largo possibile senza eccedere
+la lunghezza di uno dei lati del contenitore.
+cover, invece, è il valore ideale perché fa sì che l'immagine di sfondo sia ridimensionata
+più piccola possibile garantendo però che entrambi i suoi lati siano uguali ai lati del
+canva del background , o più grandi nel caso un lato del contenitore sia troppo piccolo
+rispetto all'altro per garantire di visualizzare l'immagine nel suo originale aspect ratio
+(i due esempi su mdn sono lampanti).
+
+
+#2 - ripulire il codice da selettori e proprietà inutili
+
+per ovviare al problema della grandezza dell'immagine di sfondo, che non avevo
+ancora resizeato, avevo dato proprietà margin uniche ad ogni elemento, che fosse
+contenitore o contenuto. Ora che l'immagine di sfondo rispecchia la grandezza tipica
+di uno schermo di un desktop/laptop su browser ho ripulito il codice da quelle inutili 
+proprietà, facendo focus tramite l'utility commento, proprietà dopo proprietà fino
+a ripulire tutto il codice in style.css
+
+#3 - centrare il box nero alla pagina
+
+ho centrato il box nero alla pagina tramite valori arbitrari che simulassero l'ouput
+fornito da Boolean dell'esercizio. Tali valori li ho stabiliti tramite proprietà
+padding assegnati a "background-container", la classe definita per il box nero.
+
+
+#4 - centrare gli elementi all'interno del box
+
+per centrare il "sections-container", ossa il box che definisse valori di distanza
+standard dal box nero nei quali tutte le sezioni sarebbero ricadute e avrebbero dovuto
+rispettare ho provato varie soluzioni:
+
+- prima il value "inherit" di margin, questo significava che il figlio, sections-container,
+avrebbe preso i valori di margin del padre, background-container.
+questa soluzione mi è
+piaciuta perché al resize della pagina tramite strumento zoom del browser, dato che 
+sia padre che figlio avevano margini definiti in percentuale rispetto ai loro padri,
+entrambi non avrebbero cambiato di forma e di distanza di margine gli uni tra gli altri in
+proporzione percentuale. 
+meccanica che a mio avviso può favore un resize, anche se non ideale, degli elementi a
+schermo in base allo zoom che l'user utilizza sul suo browser; anche se elementi che invece
+avevano proprietà di "width" e "height" fissi stabiliti in pixel, come il logo in header,
+avrebbero sforato il margine sia del box nero che del container delle sezioni ad un evenutale
+resize della pagina tramite zoom.
+da qui capisco che se la grandezza dei e la distanza trai contenitori e contenuti sono
+definite in valori percentuali si può ottenere una pagina almeno in parte screen size-proof
+e l'ho anche provato con discreti risultati con l'utility di emulazione dispositivi
+nel devtool di edge
+
+- dopo la proprietà padding, dato che inherit non era soddisfacente perché il contenitore
+delle sezioni non doveva avere gli stessi margini che il box nero aveva con il resto
+della pagina ho usato padding.
+il motivo è che ho scoperto quello che in css si chiama "margin collapse", ossia questa
+meccanica per la quale se si hanno due div, uno padre e uno figlio, il "margin" di div figlio
+non andrà ad interporsi tra il perimetro di div padre e il perimetro div figlio ma 
+piuttosto, come spiegato qui https://www.w3.org/TR/CSS2/box.html#collapsing-margins, 
+"in CSS margini adiacenti di due o più box possono combinarsi e formare un solo 
+margine. i margini che si combinano in questa maniera sono detti collapse".
+questo spiega perché definendo i margini di background-container e poi quelli di
+sections-container, quelli di sections-container non si interponevano tra i perimetri
+di padre e figlio.
+cercando su stackoverflow (https://stackoverflow.com/questions/12632125/inner-divs-margin-affecting-containing-divs-margin)
+ho scoperto questa meccanica e capito che le soluzioni sono due: o usare la proprietà
+"overflow" con value "auto" in div padre mantenendo la proprietà margini di div figlio
+ai suoi valori (anche se non ho ben capito come mai funziona dato che overflow riguarda
+il comportamento di un contenuto troppo grande per essere visualizzato nel suo contenitore),
+oppure, come spiega la pagina di w3 sopra menzionata, introducendo un border o un padding
+a div figlio (dato che la loro assenza è una condizione necessaria affinché si applichi
+la meccanisca del margin collapse tra i due)
+
+- dopo la proprietà display con value inline-block, questa proprietà CSS vista a lezione
+permette  e come afferma w3 in https://www.w3schools.com/Css/css_inline-block.asp "con
+display: inline-block i margini e i padding top e bottom vengono rispettati" e non
+collassano.
+questa soluzione sembrava perfetta se non fosse che così facendo sì i margini venivano 
+rispettati e il div figlio ".sections-container" poteva essere contenuto in div padre
+"background-container" (il box nero), tuttavia il contenitore delle sezioni non sarebbe
+stato esteso e centrato su tutto il box nero, ma piuttosto sarebbe stato grande
+quando i suoi figli seppur sempre rispettando i suoi margini, da qui ho trovato la soluzione
+che reputo migliore
+
+- infine la proprietà vertical align, questa proprietà permette di centrare qualsiasi
+contenuto verticalmente a metà del suo contenitore. questo mi ha permesso quindi di avere
+un .section-container che sì aveva i suoi margini rispettati a suo padre ma che fosse anche
+abbastanza grande da permettere sia ai suoi contenuti figli di estendersi su tutto egli 
+stesso e anche a contenuto che devono essere centrati rispetto al box nero, suo padre,
+di stare centrati.
+è difficile da spiegare ma allegnod due screenshot che esplificano i risultati:
+con display: inline-block - https://drive.google.com/file/d/1TZKLJ_0yP2R7-nAL1uP36-qfzCZzgQXA/view?usp=sharing
+con vertical-align: middle - https://drive.google.com/file/d/1gsIjA1jAy1EL_9CJ18vBbScIf5MRubH1/view?usp=sharing
+
+#5 - centrare il logo al box nero o al section container o all'header (indifferente
+dato che a questo punto tutti questi container, tutti padri del logo, sono centrati
+gli uni con gli altri)
+
+per risolvere questo problema ho semplicemente cercato "how to center an image to
+its container" e ho trovato questa page di w3 https://www.w3schools.com/howto/howto_css_image_center.asp
+che spiega che è sufficiente dare proprietà display con value block (in maniera che 
+l'immagine sia contenuta sì nell'header ma che si comporti come un blocco avendo
+prefissati dimensioni e margini e senza che altri contenuti la sovrastino o si affianchino), 
+due margini, left and right, auto per centrarla al suo contenitore header (vertical-align:
+middle non ha funzionato in questo caso) [senza specificare i margini bottom e top per far sì]
+e impostando una larghezza arbitraria, che scalasse autonomamente poi l'altezza, in
+percentuale che possa essere simile all'output fornito da Boolean
+
+#6 - centrare l'header text riducendo la distanza dal logo:
+
+in questo caso avevo il problema che dovevo centrare il testo ".header-text" a suo padre e
+così sono riuscito a fare usando text-align: center, tuttavia a quel punto avevo il 
+problema che il testo conservava del margine tra di esso e il i margini del logo.
+controllando con il devtool di edge ho notato che nelle proprietà di stile di 
+.header-text venivano inseriti dei piccoli margini automatici. per ovviare a questo problema
+ho definito manualmente i margini del testo come auto e come spessore 0 e l'output è 
+risultato pressoché uguale a quello fornito da Boolean.
+
+#7 - creare barra azioni con i bottoni:
+
+per la costruzione della barra azioni con i bottoni avevo compreso di aver più strade
+percorribili a disposizione.
+una era quella di definire tutte le proprietà (verde, largo quanto tutte le altre sezioni,
+con i bottoni all'interno, ecc) direttamente su nav classificandolo e definendo le proprietà
+in css.
+questa opzione secondo me era fattibile ma solo per quanto riguarda il colore della barra e
+la sua distanza dalle altre sezioni perché se è vero che per ora abbiamo solo dei bottoni 
+nella barra ed una volta che sono abbastanza grandi e centrati rispetto a nav o al loro padre 
+div ci va bene così, nel momento in cui andassimo ad aggiungere altri contenuto a nav (senza
+aver definito un div all'interno di nav) qualsiasi nuovo contenuto starebbe attaccato al
+vertice estremo in alto a sinistra della barra, nav stesso; mentre personalmente mi piacerebbe
+imbastire un div all'interno di nav che permettesse future modifiche che siano già formattate
+in maniera organizzata, con margini e posizionamenti più ideali dello stare in alto a sinistra,
+rispetto a nav.
+ho preferito, quindi, classificare nav come ".action-panel" per dare a tutto nav il colore
+dato che sarà probabilmente sempre verde essendo un box a sé stante e per dare ad esso
+delle distanze dalle altre sezioni che mi sembrassero giuste.
+ho poi definito un div all'interno di nav, ".button-bar", affinché solo questo div contenesse
+i bottoni e così che se volessimo inserire altri contenuti nella barra verde di nav potremo
+creare un altro div.
+i bottoni hanno poi una classe loro, ".actionbutton", per permettere di modificarli a
+piacimento.
+
+per comprendere quanto distante impostare div da rispetto a suo padre nav, ho dapprima
+stabilito una altezza di 45px a nav, poi ho guardato nel devtool di edge quanto alto
+fosse div e ho diviso a metà la differenza tra nav e div: (45-21)/2 per ottenere così
+un rettangolo div che fosse in proporzioni uguali a nav ma che ne fosse contenuto
+con padding uguale su ogni lato.
+ho però subito capito che nel momento in cui si facesse un resize della pagina web
+tramite zoom del browser si avrebbe un problema, ossia il fatto che il div contenuto
+in nav ha dei valori di padding stabiliti in px, non in percentuali, al resize
+della pagina quel valori non rimangono proporzionati al nav e l'allineamento di div
+rispetto a nav si va a perdere. ho così preferito prendere i valori del padding
+in px che avevo trovato ideali per centrare div in nav (12px 303px 12px) e trasformarli
+nel corrispettivo proporzionato percentuale.
+
+#8 - come organizzare la lista monopattini:
+
+sono rimasto a pensare molto tempo a come organizzare la lista dei monopattini dispobili.
+prima mi sono chiesto se fosse meglio avere un solo div per monopattino e se fosse stato
+l'ideale organizzare ogni elemento all'interno di tale div. poi mi sono chiesto quanti div
+dovessero avere una classe a se stante per riuscire a modificare i singoli box di testo
+che andavo a creare. poi mi sono chiesto se i padding tra ogni box dovessero essere della
+stessa altezza, così da dare continuità e coerenza tra gli elementi.
+
+alla fine, però guardando anche la struttura degli stili css di alcune pagine web famose,
+come può essere la pagina risultati google o w3 stesso, mi sono accorto che sembra essere
+pratica comune quella di avere ogni elemento che ha bisogno di specifiche caratteristiche
+in un suo individuale contenitore al quale si può affibiare una classe e determinate 
+proprietà CSS.
+mi sono anche accorto che nella maggior parte dei casi per un elenco di
+elementi testuali già costretto in un contenitore più grande il padding viene di solito
+definito solo in padding-bottom, visto che left e right sono già definiti dal contenitore
+padre. così sia per il l'intero "monopattino-infobox" che per "monopattino-title" e per i
+"text-monopattini" ho definito un padding-bottom specifico all'elemento.
+
+
+Il risultato, dal mio punto di vista, risulta nel complesso soddisfacente e molto simile
+all'output fornito da Boolean.
+A mente fresca e riposata, senza eccessiva fretta e con le lezione riviste e ripassate
+è stato decisamente più facile richiamare i concetti chiave utile alla risoluzione
+dell'esercizio e fare focus sulle criticità del codice.
+Ho richiamato le conoscenze già acquisite e sono riuscito a cercarne e farne proprie di
+nuove tramite gli strumenti suggeriti in classe ed oltre (come l'aver usato un color 
+picker dall'immagine png del loro per ottenere il verde usato nei 4 elementi della webpage
+o l'aver usato un font picker per identificare il font match migliore che rimanesse 
+però web safe font).
+
+Sono soddisfatto dell'operato, soprattutto alla luce del fallimentare primo tentativo.
+
+Mi sarebbe piaciuto personalizzare il risultato, magari con ulteriori box che evidenziassero
+i singoli box di ogni monopattino, oppure delle linee magari più complesse della singola hr
+per dividere gli elementi (immagino anche un border-left per ogni monopattino) ed oltre.
+Tuttavia, ho preferito rimanere quanto più fedele al risultato già fornito e cercare
+di emularlo quanto più alla perfezione perché volevo proprio evidenziare la mia capacità
+di andare nel dettaglio dei problemi e quella di ricreare con quante più fedeltà l'opera
+desiderata da chi la commissiona. (call it OCD maybe)
+*/
